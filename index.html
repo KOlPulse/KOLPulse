@@ -212,7 +212,9 @@
     TEST UPGRADE SCREEN
 </button>
                     <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl bg-[var(--accent-glow)] text-[var(--accent-gold)] font-bold text-sm border border-[var(--accent-gold)] active"><i class="fa-solid fa-server w-5 text-center"></i> Dashboard</button>
-                    
+                    <button onclick="switchTab('guide')" id="nav-guide" class="nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-slate-400 hover:text-white transition-all">
+        <i class="fa-solid fa-book-open w-5 text-center text-amber-400"></i> Platform Guide
+    </button>
 
                     <button onclick="switchTab('communityfeed')" id="nav-communityfeed" class="nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-slate-400 hover:text-white transition font-medium text-sm"><i class="fa-solid fa-fire text-[#00FF88]"></i> Community Alpha</button>
                     <button onclick="switchTab('vanguard')" id="nav-vanguard" class="nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-slate-400 font-medium text-sm cursor-pointer hover:text-white transition-all"><i class="fa-solid fa-crown w-5 text-center" style="color:var(--accent-gold);"></i> Syndicate Spotlight</button>
@@ -223,6 +225,7 @@
     <button onclick="switchTab('listing')" id="nav-listing" class="nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-slate-400 hover:text-white transition-all">
     <i class="fa-solid fa-bullhorn w-5 text-blue-400"></i> Ad Network & VIP
 </button>
+    
 
 
 
@@ -392,6 +395,130 @@
 
                 
             </section>
+
+<!-- PLATFORM GUIDE & KNOWLEDGE BASE -->
+<section id="tab-guide" class="hidden space-y-8 fade-in pb-16">
+    <header class="border-b border-[var(--accent-glow)] pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gold-gradient">Platform Guide & Docs</h2>
+            <p class="text-sm text-slate-400 font-mono mt-1">Everything you need to know about KOLPulse, tools, and tokenomics.</p>
+        </div>
+        <!-- Live Search Bar -->
+        <div class="w-full md:w-80 relative">
+            <input type="text" id="guide-search-input" oninput="filterPlatformGuide()" placeholder="Search guide (e.g. fee, sniper, callers)..." class="w-full bg-black border border-[var(--accent-gold)]/40 rounded-2xl px-4 py-3 text-xs font-mono text-white focus:border-[var(--accent-gold)] outline-none shadow-inner">
+            <i class="fa-solid fa-magnifying-glass absolute right-4 top-3.5 text-[var(--accent-gold)]/60"></i>
+        </div>
+    </header>
+
+    <div class="space-y-6" id="guide-content-container">
+
+        <!-- 1. FEE DISTRIBUTION & TOKENOMICS -->
+        <div class="guide-card card-custom p-6 md:p-8 rounded-3xl border-l-4 border-l-[var(--accent-gold)]">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Fee Distribution & Revenue Model</h3>
+                    <p class="text-xs text-slate-400 font-mono">Transparent smart-contract fee splits across tiers.</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+                <p>KOLPulse enforces a fixed total transaction fee of <strong>2.0%</strong> across ecosystem activities. This fee is automatically distributed by the smart contracts between the Creator (Caller) and the Platform Treasury:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-black/60 p-4 rounded-2xl border border-white/5">
+                        <h4 class="font-bold text-white mb-2 text-sm flex items-center gap-2"><i class="fa-solid fa-medal text-amber-500"></i> Standard Tiers (Bronze, Silver, Gold)</h4>
+                        <ul class="space-y-1 text-slate-400">
+                            <li>• <strong>Caller Allocation:</strong> 1.0%</li>
+                            <li>• <strong>Platform Treasury:</strong> 1.0%</li>
+                        </ul>
+                    </div>
+                    <div class="bg-black/60 p-4 rounded-2xl border border-cyan-400/30">
+                        <h4 class="font-bold text-cyan-400 mb-2 text-sm flex items-center gap-2"><i class="fa-regular fa-gem"></i> Platinum VIP Tier (Override)</h4>
+                        <ul class="space-y-1 text-slate-400">
+                            <li>• <strong>Caller Allocation:</strong> 1.2% (Higher reward for top creators)</li>
+                            <li>• <strong>Platform Treasury:</strong> 0.8%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. DASHBOARD & WATCHLIST -->
+        <div class="guide-card card-custom p-6 md:p-8 rounded-3xl border-l-4 border-l-blue-400">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-server"></i></div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Dashboard & Watchlist</h3>
+                    <p class="text-xs text-slate-400 font-mono">Your personal command center and portfolio overview.</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                <p>The Dashboard gives you an instant overview of your active P&L, paper balance or connected trading wallet, active snipes, and your favorite tokens.</p>
+                <ul class="space-y-1 text-slate-400">
+                    <li>• <strong>Watchlist:</strong> Click the star icon next to any token in the feeds to instantly add it to your personal tracking watchlist.</li>
+                    <li>• <strong>Active Snipes & Sell Menu:</strong> Manage your open positions and instantly sell 25%, 50%, 75%, or 100% via the dropdown menu.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. APEX QUANTUM SNIPER & EXIT SHIELD -->
+        <div class="guide-card card-custom p-6 md:p-8 rounded-3xl border-l-4 border-l-red-500">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-bolt-lightning"></i></div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Apex Quantum Sniper & Exit Shield</h3>
+                    <p class="text-xs text-slate-400 font-mono">Zero-latency mempool execution and automated protection.</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                <p>The Apex Sniper scans the mempool in real-time with an optimal RPC latency of ~4ms.</p>
+                <ul class="space-y-1 text-slate-400">
+                    <li>• <strong>Target Lock:</strong> Click on any token in the scanner to lock its Contract Address (CA) into the firing target view.</li>
+                    <li>• <strong>Exit Shield (TP/SL):</strong> Set your desired Take Profit (%) and Stop Loss (%) and click <em>Arm Take Profit / Stop Loss</em> to automatically protect your position.</li>
+                    <li>• <strong>Nuclear Dump:</strong> Instantly market-sell all your tokens in case of emergency.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. CALLERS HUB & TREASURY -->
+        <div class="guide-card card-custom p-6 md:p-8 rounded-3xl border-l-4 border-l-purple-400">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-tower-broadcast"></i></div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Callers Hub & Treasury</h3>
+                    <p class="text-xs text-slate-400 font-mono">For creators dropping alpha and claiming escrow rewards.</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                <p>Content creators and alpha callers use the Callers Hub to publish calls and collect rewards.</p>
+                <ul class="space-y-1 text-slate-400">
+                    <li>• <strong>Drop Alpha:</strong> Input your CA, select your hype factor (e.g., 100x Gem or Degen Play), and choose between a Standard or Premium Snipe call.</li>
+                    <li>• <strong>Treasury Claims:</strong> Your earned SOL from fee-splits flows directly into your escrow balance, ready to be claimed to your connected wallet with a single click.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 5. AI PROMO ENGINE V7 -->
+        <div class="guide-card card-custom p-6 md:p-8 rounded-3xl border-l-4 border-l-emerald-400">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">AI Promo Engine V7</h3>
+                    <p class="text-xs text-slate-400 font-mono">Automated marketing assets and social media distribution.</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                <p>Generate viral X threads and Telegram raids within seconds based on live token data.</p>
+                <ul class="space-y-1 text-slate-400">
+                    <li>• <strong>Vibes:</strong> Choose from Ape/Degen, Pro Alpha, Moonboy, or Reverse FUD.</li>
+                    <li>• <strong>Auto-Fetch Media:</strong> The engine automatically pulls token logos and branding assets for your promotional posts.</li>
+                    <li>• <strong>Multi-Platform Launch:</strong> Instantly publish directly to X (Twitter) and your linked Telegram channels.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 
                        
@@ -2734,24 +2861,26 @@ function getRowHtml(name, mcap, vol, liq, caller, theme, ca, tg = '#', x = '#') 
 
             
         function switchTab(tabId) {
-            const tabs = [
-                'dashboard', 'callers', 'vanguard', 'leaderboard', 
-                'whale', 'anon', 'community', 'alphafeed', 
-                'scanner', 'promogen', 'communityfeed', 'listing'
-            ];
+    const tabs = [
+        'dashboard', 'callers', 'vanguard', 'leaderboard', 
+        'whale', 'anon', 'community', 'alphafeed', 
+        'scanner', 'promogen', 'communityfeed', 'listing', 
+        'guide' // <--- 'guide' hier toevoegen!
+    ];
 
-            tabs.forEach(t => {
-                let el = document.getElementById('tab-' + t);
-                let nav = document.getElementById('nav-' + t);
-                if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
-                if (nav) { nav.className = "nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-slate-400 hover:text-white transition font-medium text-sm cursor-pointer"; }
-            });
+    tabs.forEach(t => {
+        let el = document.getElementById('tab-' + t);
+        let nav = document.getElementById('nav-' + t);
+        if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+        if (nav) { nav.className = "nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-slate-400 hover:text-white transition font-medium text-sm cursor-pointer"; }
+    });
 
-            let activeEl = document.getElementById('tab-' + tabId);
-            let activeNav = document.getElementById('nav-' + tabId);
-            if (activeEl) activeEl.classList.remove('hidden');
-            if (activeNav) activeNav.className = "nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl bg-[var(--accent-glow)] text-[var(--accent-gold)] font-medium text-sm cursor-pointer";
-        }
+    let activeEl = document.getElementById('tab-' + tabId);
+    let activeNav = document.getElementById('nav-' + tabId);
+    if (activeEl) activeEl.classList.remove('hidden');
+    if (activeNav) activeNav.className = "nav-item w-full flex items-center gap-4 px-5 py-3.5 rounded-xl bg-[var(--accent-glow)] text-[var(--accent-gold)] font-medium text-sm cursor-pointer";
+}
+
             // Functie om de Community Feed te filteren/sorteren
         function sortCommunityFeed(type, clickedBtn) {
             // 1. Knoppen styling updaten (actieve knop groen maken)
@@ -3221,6 +3350,21 @@ function updatePrices() {
     document.getElementById('price-elite').innerHTML = `$${eliteTotal} <span class="text-sm font-normal text-slate-400">/ ${weeks} weeks (in SOL)</span>`;
 }
 
+   // Live Zoekfunctie voor de Platform Guide
+function filterPlatformGuide() {
+    const query = document.getElementById('guide-search-input').value.toLowerCase();
+    const cards = document.querySelectorAll('#guide-content-container .guide-card');
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+ 
     
     </script>
 </body>
